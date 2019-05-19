@@ -21,7 +21,6 @@ var table = d3.select("table")
 
 var body = d3.select("tbody")
 
-
 tableData.forEach((sighting) => {
     var newrow = body.append('tr');
 
@@ -33,35 +32,63 @@ tableData.forEach((sighting) => {
     });
 });
 
+
 var submit = d3.select("#filter-btn");
+
+// submit.on("click", function() {
+//     d3.event.preventDefault();
+//     var dateInputElement = d3.select("#datetime");
+//     var dateinputValue = dateInputElement.property("value");
+//     console.log(dateinputValue);
+
+//     var dateFilteredData = tableData.filter(sighting => sighting.datetime === dateinputValue);
+//     console.log(dateFilteredData);
+
+//     body.selectAll("tr").text("")
+
+//     dateFilteredData.forEach((date) => {
+//         var daterow = body.append('tr');
+//         Object.entries(date).forEach(([key, value]) => {
+//             // console.log(key, value) 
+//             daterow.append('td').text(value)
+//         });
+//     });
+
+// });
+
 
 submit.on("click", function() {
     
     d3.event.preventDefault();
+    var dateInputElement = d3.select("#datetime");
+    var dateinputValue = dateInputElement.property("value");
 
-    var inputElement = d3.select("#datetime");
+    var cityInputElement = d3.select("#city");
+    var cityinputValue = cityInputElement.property("value");
 
-    var inputValue = inputElement.property("value");
-  
-    console.log(inputValue);
+    var stateInputElement = d3.select("#state");
+    var stateinputValue = stateInputElement.property("value");
 
-    var filteredData = tableData.filter(sighting => sighting.datetime === inputValue);
+    var shapeInputElement = d3.select("#shape");
+    var shapeinputValue = shapeInputElement.property("value");
 
-    console.log(filteredData);
+
+    var FilteredData = tableData.filter( sighting => (
+                sighting.datetime === dateinputValue ||
+                sighting.city === cityinputValue ||
+                sighting.state === stateinputValue ||
+                sighting.shape === shapeinputValue
+            )
+        );
+    console.log(FilteredData);
 
     body.selectAll("tr").text("")
-
-    filteredData.forEach((date) => {
+    FilteredData.forEach((date) => {
         var daterow = body.append('tr');
-
         Object.entries(date).forEach(([key, value]) => {
-            // console.log(key, value)
-            
             daterow.append('td').text(value)
-    
         });
     });
 
-  
 });
 

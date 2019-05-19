@@ -98,10 +98,11 @@ select {
   padding: 20px;
   margin: 0;
   background: black;
-  background-image: url("../images/nasa.jpg");
+  /* background-image: url("../images/nasa.jpg"); */
   background-attachment: fixed;
   background-position: bottom center;
   background-size: cover;
+  background-image: url("https://thumbs-prod.si-cdn.com/qyd937Dyy7Z9YxiIDAaSwV91itU=/800x600/filters:no_upscale()/https://public-media.si-cdn.com/filer/cc/bb/ccbb5e39-e6f0-4d6e-9b64-c1ae44b58f5c/istock-611295678.jpg")
 }
 
 .hero h1 {

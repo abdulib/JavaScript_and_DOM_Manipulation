@@ -14,7 +14,7 @@ tableData.splice(2,1, {
     comments: "Cowboys win a superbowl, that's alien!."
     });
 
-console.log(Object.entries(tableData[2]));
+// console.log(Object.entries(tableData[2]));
 
 
 var table = d3.select("table")
@@ -31,5 +31,37 @@ tableData.forEach((sighting) => {
         newrow.append('td').text(value)
   
     });
+});
+
+var submit = d3.select("#filter-btn");
+
+submit.on("click", function() {
+    
+    d3.event.preventDefault();
+
+    var inputElement = d3.select("#datetime");
+
+    var inputValue = inputElement.property("value");
+  
+    console.log(inputValue);
+
+    var filteredData = tableData.filter(sighting => sighting.datetime === inputValue);
+
+    console.log(filteredData);
+
+    body.selectAll("tr").text("")
+
+    filteredData.forEach((date) => {
+        var daterow = body.append('tr');
+
+        Object.entries(date).forEach(([key, value]) => {
+            // console.log(key, value)
+            
+            daterow.append('td').text(value)
+    
+        });
+    });
+
+  
 });
 
